@@ -1,0 +1,5 @@
+.auth__field{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 13px;
+}
