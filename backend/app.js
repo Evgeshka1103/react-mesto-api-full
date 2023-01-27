@@ -12,7 +12,7 @@ const routes = require('./routes');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: ['http://localhost:3000', 'https://evgeshka.nomoredomainsclub.ru'], credentials: true, maxAge: 60 }));
 app.use(cookieParser());
 
 const { PORT = 3000 } = process.env;
