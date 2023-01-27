@@ -17,7 +17,10 @@ class Api {
    getUserInfo() {
       return fetch(`${this._baseUrl}/users/me`, {
          method: 'GET',
-         headers: this._headers
+         credentials: 'include',
+         headers: {
+            'Content_Type': 'application/json',
+         },
       })
          .then(this._checkResponse);
    }
@@ -26,7 +29,10 @@ class Api {
    getInitialCards() {
       return fetch(`${this._baseUrl}/cards`, {
          method: 'GET',
-         headers: this._headers
+         credentials: 'include',
+         headers: {
+            'Content_Type': 'application/json',
+         },
       })
          .then(this._checkResponse);
    }
@@ -35,7 +41,10 @@ class Api {
    patchUserInfoData(name, about) {
       return fetch(`${this._baseUrl}/users/me`, {
          method: 'PATCH',
-         headers: this._headers,
+         credentials: 'include',
+         headers: {
+            'Content_Type': 'application/json',
+         },
          body: JSON.stringify({
             name: name,
             about: about
@@ -48,7 +57,10 @@ class Api {
    postUserCardData(name, link) {
       return fetch(`${this._baseUrl}/cards`, {
          method: 'POST',
-         headers: this._headers,
+         credentials: 'include',
+         headers: {
+            'Content_Type': 'application/json',
+         },
          body: JSON.stringify({
             name: name,
             link: link
@@ -61,7 +73,10 @@ class Api {
    addLike(id) {
       return fetch(`${this._baseUrl}/cards/${id}/likes`, {
          method: 'PUT',
-         headers: this._headers
+         credentials: 'include',
+         headers: {
+            'Content_Type': 'application/json',
+         },
       })
          .then(this._checkResponse);
    }
@@ -70,7 +85,10 @@ class Api {
    deleteCard(id) {
       return fetch(`${this._baseUrl}/cards/${id}`, {
          method: 'DELETE',
-         headers: this._headers
+         credentials: 'include',
+         headers: {
+            'Content_Type': 'application/json',
+         },
       })
          .then(this._checkResponse);
    }
@@ -79,7 +97,10 @@ class Api {
    deleteLike(id) {
       return fetch(`${this._baseUrl}/cards/${id}/likes`, {
          method: 'DELETE',
-         headers: this._headers
+         credentials: 'include',
+         headers: {
+            'Content_Type': 'application/json',
+         },
       })
          .then(this._checkResponse);
    }
@@ -92,7 +113,10 @@ class Api {
    patchUserAvatarData(link) {
       return fetch(`${this._baseUrl}/users/me/avatar`, {
          method: 'PATCH',
-         headers: this._headers,
+         credentials: 'include',
+         headers: {
+            'Content-Type': 'aplication/json',
+         },
          body: JSON.stringify({
             avatar: link
          })
@@ -102,7 +126,7 @@ class Api {
 }
 
 export default new Api({
-   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-51',
+   baseUrl: 'https://https://api.evgeshka.nomoredomainsclub.ru',
    headers: {
       authorization: '5c931bad-1961-412c-8ce8-c9feec65b03a',
       'Content-Type': 'application/json'
