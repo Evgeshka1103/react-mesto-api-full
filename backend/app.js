@@ -12,7 +12,23 @@ const routes = require('./routes');
 
 const app = express();
 
-app.use(cors({ origin: ['http://localhost:3000', 'https://evgeshka.nomoredomainsclub.ru'], credentials: true, maxAge: 60 }));
+//app.use(cors({ origin: ['http://localhost:3000', 'https://evgeshka.nomoredomainsclub.ru'], credentials: true, maxAge: 60 }));
+
+const options = {
+  origin: [
+    'http://localhost:3000',
+    'https://evgeshka.nomoredomainsclub.ru',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 200,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,
+  maxAge: 60,
+};
+
+app.use('*', cors(options));
+
 app.use(cookieParser());
 
 const { PORT = 3000 } = process.env;
@@ -31,6 +47,13 @@ app.use(helmet());
 app.use(requestLogger);
 app.use(limiter);
 app.use(routes);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use(errorLogger);
 app.use(errors());
 
