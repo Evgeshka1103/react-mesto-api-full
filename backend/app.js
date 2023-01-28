@@ -16,7 +16,7 @@ const app = express();
 
 const options = {
   origin: [
-    'http://localhost:3000',
+    'http:127.0.0.1:3000',
     'https://evgeshka.nomoredomainsclub.ru',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
