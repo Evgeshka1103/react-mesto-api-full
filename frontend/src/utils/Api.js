@@ -126,7 +126,7 @@ class Api {
 }
 
 export default new Api({
-   baseUrl: 'https://api.evgeshka.nomoredomainsclub.ru',
+   baseUrl: 'https://localhost:3000',
    headers: {
       'Content-Type': 'application/json'
    }

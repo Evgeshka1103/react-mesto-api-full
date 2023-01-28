@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.evgeshka.nomoredomainsclub.ru';
+export const BASE_URL = 'https://localhost:3000';
 
 //проверка
 function onResponse(response) {
@@ -10,7 +10,7 @@ function onResponse(response) {
 }
 
 export const register = (email, password) => {
-    return fetch(`${BASE_URL}/sign-up`, {
+    return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -22,7 +22,7 @@ export const register = (email, password) => {
 }
 
 export const login = (email, password) => {
-    return fetch(`${BASE_URL}/sign-in`, {
+    return fetch(`${BASE_URL}/signin`, {
         method: 'POST',
         credentials: 'include',
         headers: {
