@@ -126,9 +126,8 @@ class Api {
 }
 
 export default new Api({
-   baseUrl: 'https://https://api.evgeshka.nomoredomainsclub.ru',
+   baseUrl: 'https://api.evgeshka.nomoredomainsclub.ru',
    headers: {
-      authorization: '5c931bad-1961-412c-8ce8-c9feec65b03a',
       'Content-Type': 'application/json'
    }
 });
