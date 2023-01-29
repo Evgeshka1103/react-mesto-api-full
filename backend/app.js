@@ -14,6 +14,11 @@ const app = express();
 
 app.use(cors());
 
+app.get('/cors', (req, res) => {
+  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.send({ message: 'err' });
+});
+
 app.use(cookieParser());
 
 const { PORT = 3000 } = process.env;
