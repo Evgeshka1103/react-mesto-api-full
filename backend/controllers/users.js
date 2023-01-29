@@ -17,7 +17,6 @@ const getUsers = (req, res, next) => {
 const getUserById = (req, res, next) => {
   User.findById(req.params.userId)
     .orFail(new NotFoundError('Не найдено'))
-
     .then((user) => {
       res.send(user);
     })
@@ -31,7 +30,6 @@ const getUserById = (req, res, next) => {
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
-
   return User.findUserByCredantials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, 'some-secret-key', {
@@ -53,7 +51,6 @@ const createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
-
   bcrypt
     .hash(password, 10)
     .then((hash) => User.create({
@@ -70,7 +67,6 @@ const createUser = (req, res, next) => {
           new ConflictError('Пользователь с таким email уже существует'),
         );
       }
-
       if (err.name === 'ValidationError') {
         return next(new BadRequestError('Некорректный запрос'));
       }
