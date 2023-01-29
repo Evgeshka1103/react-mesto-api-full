@@ -3,3 +3,7 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 https://evgeshka1103.github.io/react-mesto-api-full/
+
+IP  51.250.102.129
+Frontend  http://evgeshka.nomoredomainsclub.ru
+Backend  http://api.evgeshka.nomoredomainsclub.ru
