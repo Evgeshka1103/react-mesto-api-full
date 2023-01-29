@@ -12,14 +12,13 @@ class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
    }
 
-
    //Загрузка информации о пользователе с сервера
    getUserInfo() {
       return fetch(`${this._baseUrl}/users/me`, {
          method: 'GET',
          credentials: 'include',
          headers: {
-            'Content_Type': 'application/json',
+            'Content-Type': 'application/json'
          },
       })
          .then(this._checkResponse);
@@ -31,7 +30,7 @@ class Api {
          method: 'GET',
          credentials: 'include',
          headers: {
-            'Content_Type': 'application/json',
+            'Content-Type': 'application/json'
          },
       })
          .then(this._checkResponse);
@@ -43,7 +42,7 @@ class Api {
          method: 'PATCH',
          credentials: 'include',
          headers: {
-            'Content_Type': 'application/json',
+            'Content-Type': 'application/json'
          },
          body: JSON.stringify({
             name: name,
@@ -59,7 +58,7 @@ class Api {
          method: 'POST',
          credentials: 'include',
          headers: {
-            'Content_Type': 'application/json',
+            'Content-Type': 'application/json'
          },
          body: JSON.stringify({
             name: name,
@@ -75,7 +74,7 @@ class Api {
          method: 'PUT',
          credentials: 'include',
          headers: {
-            'Content_Type': 'application/json',
+            'Content-Type': 'application/json'
          },
       })
          .then(this._checkResponse);
@@ -87,7 +86,7 @@ class Api {
          method: 'DELETE',
          credentials: 'include',
          headers: {
-            'Content_Type': 'application/json',
+            'Content-Type': 'application/json'
          },
       })
          .then(this._checkResponse);
@@ -99,7 +98,7 @@ class Api {
          method: 'DELETE',
          credentials: 'include',
          headers: {
-            'Content_Type': 'application/json',
+            'Content-Type': 'application/json'
          },
       })
          .then(this._checkResponse);
@@ -115,7 +114,7 @@ class Api {
          method: 'PATCH',
          credentials: 'include',
          headers: {
-            'Content-Type': 'aplication/json',
+            'Content-Type': 'application/json'
          },
          body: JSON.stringify({
             avatar: link
@@ -126,7 +125,7 @@ class Api {
 }
 
 export default new Api({
-   baseUrl: 'https://localhost:3000',
+   baseUrl: 'http://localhost:3000',
    headers: {
       'Content-Type': 'application/json'
    }
