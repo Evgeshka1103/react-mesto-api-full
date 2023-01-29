@@ -61,6 +61,7 @@ const likeCard = (req, res, next) => {
     { $addToSet: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .orFail(new NotFoundError('Не найдено'))
     .then((card) => {
       res.send(card);

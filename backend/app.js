@@ -14,18 +14,13 @@ const app = express();
 
 app.use(cors());
 
-app.get('/cors', (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.send({ message: 'err' });
-});
-
 app.use(cookieParser());
 
 const { PORT = 3000 } = process.env;
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // за 15 минут
-  max: 100, // можно совершить максимум 100 запросов с одного IP
+  max: 500, // можно совершить максимум 500 запросов с одного IP
 });
 
 mongoose.set('strictQuery', true);

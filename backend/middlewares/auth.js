@@ -1,21 +1,18 @@
 const jwt = require('jsonwebtoken');
-
-const { NODE_ENV, JWT_SECRET } = process.env;
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
 module.exports = (req, res, next) => {
-  // eslint-disable-next-line no-undef
-  const token = cookies.jwt;
+  const { authorization } = req.headers;
 
-  if (!token) {
-    next(new UnauthorizedError('Используйте действительную почту и пароль'));
-    return;
+  if (!authorization || !authorization.startsWith('Bearer ')) {
+    throw next(new UnauthorizedError('Используйте действительную почту и пароль'));
   }
 
+  const token = authorization.replace('Bearer ', '');
   let payload;
 
   try {
-    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secretKey');
+    payload = jwt.verify(token, 'some-secret-key');
   } catch (err) {
     next(new UnauthorizedError('Используйте действительную почту и пароль'));
   }
