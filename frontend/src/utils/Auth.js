@@ -12,7 +12,6 @@ function onResponse(response) {
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
-        credentials: 'include',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -24,7 +23,6 @@ export const register = (email, password) => {
 export const login = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
         method: 'POST',
-        credentials: 'include',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -36,9 +34,9 @@ export const login = (email, password) => {
 export const getContent = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
-        credentials: 'include',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
     })
         .then((res) => onResponse(res));

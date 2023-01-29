@@ -3,7 +3,7 @@ import React from 'react';
 export default function PopupWithForm(props) {
 
     return (
-        <div className={`popup popup_${props.name} ${props.isOpen}`}>
+        <div className={`popup popup_${props.name} ${props.isOpen ? 'popup__opened' : ''}`}>
             <div className="popup__container">
                 <button
                     className="popup__button-close"

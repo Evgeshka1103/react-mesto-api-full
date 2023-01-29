@@ -5,7 +5,7 @@ export default function PopupWithConfirmation(props) {
     function handleCardDelete(evt) {
         evt.preventDefault();
         
-        props.onDeleteCard(props.card);
+        props.onSubmitDeleteCard(props.card);
     };
 
     return (

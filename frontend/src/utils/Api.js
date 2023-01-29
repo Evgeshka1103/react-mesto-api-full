@@ -16,10 +16,7 @@ class Api {
    getUserInfo() {
       return fetch(`${this._baseUrl}/users/me`, {
          method: 'GET',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json'
-         },
+         headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
       })
          .then(this._checkResponse);
    }
@@ -28,22 +25,16 @@ class Api {
    getInitialCards() {
       return fetch(`${this._baseUrl}/cards`, {
          method: 'GET',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json'
-         },
+         headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
       })
          .then(this._checkResponse);
    }
 
    //Редактирование профиля
-   patchUserInfoData(name, about) {
+   patchUserInfoData({ name, about }) {
       return fetch(`${this._baseUrl}/users/me`, {
          method: 'PATCH',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json'
-         },
+         headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
          body: JSON.stringify({
             name: name,
             about: about
@@ -53,13 +44,10 @@ class Api {
    }
 
    //Добавление новой карточки
-   postUserCardData(name, link) {
+   postUserCardData({ name, link }) {
       return fetch(`${this._baseUrl}/cards`, {
          method: 'POST',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json'
-         },
+         headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
          body: JSON.stringify({
             name: name,
             link: link
@@ -72,10 +60,7 @@ class Api {
    addLike(id) {
       return fetch(`${this._baseUrl}/cards/${id}/likes`, {
          method: 'PUT',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json'
-         },
+         headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
       })
          .then(this._checkResponse);
    }
@@ -84,10 +69,7 @@ class Api {
    deleteCard(id) {
       return fetch(`${this._baseUrl}/cards/${id}`, {
          method: 'DELETE',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json'
-         },
+         headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
       })
          .then(this._checkResponse);
    }
@@ -96,10 +78,7 @@ class Api {
    deleteLike(id) {
       return fetch(`${this._baseUrl}/cards/${id}/likes`, {
          method: 'DELETE',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json'
-         },
+         headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
       })
          .then(this._checkResponse);
    }
@@ -112,21 +91,18 @@ class Api {
    patchUserAvatarData(link) {
       return fetch(`${this._baseUrl}/users/me/avatar`, {
          method: 'PATCH',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({
-            avatar: link
-         })
+         headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
+         body: JSON.stringify(link)
       })
          .then(this._checkResponse);
    }
 }
 
-export default new Api({
-   baseUrl: 'http://localhost:3000',
+const api = new Api({
+   baseUrl: 'http://api.evgeshka.nomoredomainsclub.ru',
    headers: {
       'Content-Type': 'application/json'
    }
 });
+
+export default api;

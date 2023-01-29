@@ -39,6 +39,8 @@ export default function App() {
   const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || isImagePopupOpen;
 
   useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if(jwt) {
     Promise.all([
       api.getUserInfo(),
       api.getInitialCards()
@@ -48,7 +50,8 @@ export default function App() {
         setCards(cardsData);
       })
       .catch(err => console.log(`Ошибка: ${err}`));
-  }, []);
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -56,7 +59,7 @@ export default function App() {
       auth.getContent(jwt)
         .then((res) => {
           if (res) {
-            setUserEmail(res.data.email);
+            setUserEmail(res.email);
           }
           setIsLoggedIn(true);
           history.push('/');
@@ -196,7 +199,7 @@ export default function App() {
             onEditAvatar={handleEditAvatarClick}
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
-            onCardDelete={handleConfirmationDeleteClick}
+            onDeleteCard={handleConfirmationDeleteClick}
             onClickCard={handleCardClick}
             onLikeCard={handleCardLike}
             cards={cards}
