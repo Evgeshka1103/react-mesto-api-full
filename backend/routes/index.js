@@ -10,6 +10,12 @@ const cardsRoutes = require('./cards');
 
 const routes = express.Router();
 
+routes.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 routes.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
