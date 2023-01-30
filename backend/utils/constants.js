@@ -12,7 +12,7 @@ const NotFound = 404; // Не найдено
 
 const Conflict = 409; // Пользователь с таким email уже существует
 
-const InternalServerError = 500; // Внутренняя ошибка сервера
+const InternalServerError = 500; // На сервере произошла ошибка
 
 module.exports = {
   OK,
