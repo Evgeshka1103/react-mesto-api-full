@@ -40,15 +40,15 @@ export default function App() {
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
-    if(jwt) {
+    if (jwt) {
     Promise.all([
       api.getUserInfo(),
-      api.getInitialCards()
+      api.getInitialCards(),
     ])
-      .then(([userData, cardsData]) => {
-        setCurrentUser(userData);
-        setCards(cardsData);
-      })
+    .then(([userData, cardsData]) => { 
+      setCurrentUser(userData); 
+      setCards(cardsData); 
+    }) 
       .catch(err => console.log(`Ошибка: ${err}`));
     }
   }, [isLoggedIn]);
@@ -66,7 +66,7 @@ export default function App() {
         })
         .catch(err => console.log(`Ошибка: ${err}`));
     }
-  }, [isLoggedIn]);
+  }, [history]);
 
   useEffect(() => {
     function handleEsc(evt) {

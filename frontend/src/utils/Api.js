@@ -44,13 +44,13 @@ class Api {
    }
 
    //Добавление новой карточки
-   postUserCardData({ name, link }) {
+   postUserCardData({ name, link}) {
       return fetch(`${this._baseUrl}/cards`, {
          method: 'POST',
          headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
          body: JSON.stringify({
             name: name,
-            link: link
+            link: link,
          })
       })
          .then(this._checkResponse);
@@ -88,11 +88,13 @@ class Api {
    }
 
    //Обновление аватара пользователя
-   patchUserAvatarData(link) {
+   patchUserAvatarData({ link }) {
       return fetch(`${this._baseUrl}/users/me/avatar`, {
          method: 'PATCH',
          headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
-         body: JSON.stringify(link)
+         body: JSON.stringify({
+            link: link
+          })
       })
          .then(this._checkResponse);
    }
