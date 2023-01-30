@@ -26,18 +26,17 @@ const limiter = rateLimit({
 mongoose.set('strictQuery', true);
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(helmet());
-app.use(requestLogger);
-app.use(limiter);
-
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(helmet());
+app.use(requestLogger);
+app.use(limiter);
 app.use(routes);
 app.use(errorLogger);
 app.use(errors());
