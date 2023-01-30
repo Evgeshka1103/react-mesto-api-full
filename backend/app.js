@@ -31,7 +31,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(requestLogger);
 app.use(limiter);
-app.use(routes);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -39,6 +38,7 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
+app.use(routes);
 app.use(errorLogger);
 app.use(errors());
 
