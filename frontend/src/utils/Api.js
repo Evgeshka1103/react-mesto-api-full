@@ -57,8 +57,8 @@ class Api {
    }
 
    //Отображение количества лайков карточки
-   addLike(id) {
-      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+   addLike(cardId) {
+      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
          method: 'PUT',
          headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
       })
@@ -66,8 +66,8 @@ class Api {
    }
 
    //Удаление карточки
-   deleteCard(id) {
-      return fetch(`${this._baseUrl}/cards/${id}`, {
+   deleteCard(cardId) {
+      return fetch(`${this._baseUrl}/cards/${cardId}`, {
          method: 'DELETE',
          headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
       })
@@ -75,17 +75,21 @@ class Api {
    }
 
    //Постановка и снятие лайка
-   deleteLike(id) {
-      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+   deleteLike(cardId) {
+      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
          method: 'DELETE',
          headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
       })
          .then(this._checkResponse);
    }
 
-   changeLikeStatus(id, isLiked) {
-      return isLiked ? this.deleteLike(id) : this.addLike(id);
-   }
+   changeLikeStatus(cardId, isLiked) {
+      if(isLiked) {
+        return this.setlike(cardId)
+      } else {
+        return this.removeLike(cardId)
+      }
+    }
 
    //Обновление аватара пользователя
    patchUserAvatarData(link) {
