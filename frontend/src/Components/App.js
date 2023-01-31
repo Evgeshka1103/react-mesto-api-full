@@ -144,10 +144,10 @@ export default function App() {
   };
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     api.changeLikeStatus(card._id, isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((i) => i._id === card._id ? newCard : i));
+        setCards((state) => state.map((element) => card._id ? newCard : element));
       })
       .catch(err => console.log(`Ошибка: ${err}`));
   };
@@ -155,7 +155,7 @@ export default function App() {
   function handleDeletecard(card) {
     api.deleteCard(card._id)
       .then(() => {
-        setCards(state => state.filter((i) => i._id !== card._id));
+        setCards(state => state.filter((element) => element._id !== card._id));
       })
       .then(() => closeAllPopups())
       .catch(err => console.log(`Ошибка: ${err}`));
