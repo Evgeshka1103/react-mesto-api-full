@@ -7,7 +7,7 @@ export default function Card(props) {
     const isOwn = props.card.owner === currentUser._id;
     const buttonDeleteCardClassName = (`${isOwn ? 'elements__delete_active' : 'elements__delete'}`);
 
-    const isLiked = props.card.likes.some(element => element === currentUser._id);
+    const isLiked = props.card.likes.some(i => i === currentUser._id);
     const buttonLikeCardClassName = (`${isLiked ? 'elements__like_active' : 'elements__like'}`);
 
     function handleCardClick() {
@@ -23,7 +23,7 @@ export default function Card(props) {
     } 
 
 return (
-        <div className="elements__card" key={props.card._id}>
+        <div className="elements__card">
             <img className="elements__mask-group" src={props.card.link} alt={props.card.name} onClick={handleCardClick} />
             <div className="elements__text">
                 <h2 className="elements__sight">{props.card.name}</h2>
