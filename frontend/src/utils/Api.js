@@ -84,12 +84,8 @@ class Api {
    }
 
    changeLikeStatus(id, isLiked) {
-      if(isLiked) {
-        return this.setlike(id)
-      } else {
-        return this.removeLike(id)
-      }
-    }
+     return isLiked ? this.deleteLike(id) : this.addLike(id);
+   }
 
    //Обновление аватара пользователя
    patchUserAvatarData(link) {
