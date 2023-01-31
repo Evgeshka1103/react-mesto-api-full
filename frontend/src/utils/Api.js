@@ -88,20 +88,18 @@ class Api {
    }
 
    //Обновление аватара пользователя
-   patchUserAvatarData({ link }) {
+   patchUserAvatarData(link) {
       return fetch(`${this._baseUrl}/users/me/avatar`, {
          method: 'PATCH',
          headers: {...this._headers, 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
-         body: JSON.stringify({
-            link: link
-          })
+         body: JSON.stringify(link)
       })
          .then(this._checkResponse);
    }
 }
 
 const api = new Api({
-   baseUrl: 'http://api.evgeshka.nomoredomainsclub.ru',
+   baseUrl: 'https://api.evgeshka.nomoredomainsclub.ru',
    headers: {
       'Content-Type': 'application/json'
    }
