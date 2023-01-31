@@ -143,23 +143,23 @@ export default function App() {
       .catch(err => console.log(`Ошибка: ${err}`));
   };
 
-  function handleCardLike(card) { 
-    const isLiked = card.likes.some(i => i._id === currentUser._id); 
-      api.changeLikeStatus(card._id, isLiked) 
-        .then((newCard) => { 
-          setCards((state) => state.map((i) => i._id === card._id ? newCard : i)); 
-        }) 
-        .catch(err => console.log(`Ошибка: ${err}`)); 
-  }; 
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    api.changeLikeStatus(card._id, isLiked)
+      .then((newCard) => {
+        setCards((state) => state.map((i) => i._id === card._id ? newCard : i));
+      })
+      .catch(err => console.log(`Ошибка: ${err}`));
+  };
 
- function handleDeletecard(card) { 
-    api.deleteCard(card._id) 
-      .then(() => { 
-        setCards(state => state.filter((i) => i._id !== card._id)); 
-      }) 
-      .then(() => closeAllPopups()) 
-      .catch(err => console.log(`Ошибка: ${err}`)); 
-  }; 
+  function handleDeletecard(card) {
+    api.deleteCard(card._id)
+      .then(() => {
+        setCards(state => state.filter((i) => i._id !== card._id));
+      })
+      .then(() => closeAllPopups())
+      .catch(err => console.log(`Ошибка: ${err}`));
+  };
 
   function handleRegisterUser(email, password) {
     auth.register(email, password)

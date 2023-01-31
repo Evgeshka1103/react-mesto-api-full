@@ -84,7 +84,7 @@ class Api {
    }
 
    changeLikeStatus(id, isLiked) {
-     return isLiked ? this.deleteLike(id) : this.addLike(id);
+      return isLiked ? this.deleteLike(id) : this.addLike(id);
    }
 
    //Обновление аватара пользователя
